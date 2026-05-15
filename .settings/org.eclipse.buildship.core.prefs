@@ -1,0 +1,13 @@
+arguments=--init-script /home/lukas/.eclipse/827834468_linux_gtk_x86_64/configuration/org.eclipse.osgi/58/0/.cp/gradle/init/init.gradle -Porg.gradle.java.installations.paths\=/nix/store -Porg.gradle.java.installations.auto-download\=false -Porg.gradle.java.installations.paths\=/nix/store -Porg.gradle.java.installations.auto-download\=false
+auto.sync=false
+build.scans.enabled=false
+connection.gradle.distribution=GRADLE_DISTRIBUTION(WRAPPER)
+connection.project.dir=
+eclipse.preferences.version=1
+gradle.user.home=
+java.home=/nix/store/c3pl7bqrx3d2rc3dh98z6yaj0mv1p52g-openjdk-21.0.10+7/lib/openjdk
+jvm.arguments=
+offline.mode=false
+override.workspace.settings=true
+show.console.view=true
+show.executions.view=true
