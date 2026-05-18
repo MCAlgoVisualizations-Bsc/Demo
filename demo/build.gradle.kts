@@ -33,7 +33,8 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "org.example.App"
+    mainClass = "io.github.mcalgovisualizations.demo.Main"
+    applicationName = "Demo"
 }
 
 tasks.named<Test>("test") {

@@ -19,4 +19,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Demo"
-include("app")
+include("demo")

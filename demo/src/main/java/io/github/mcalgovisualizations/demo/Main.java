@@ -1,4 +1,4 @@
-package org.example;
+package io.github.mcalgovisualizations.demo;
 
 import io.github.mcalgovisualizations.visualization.instance.AlgoCraft;
 import net.minestom.server.Auth;
@@ -9,7 +9,7 @@ import net.minestom.server.entity.PlayerSkin;
 import net.minestom.server.event.player.AsyncPlayerConfigurationEvent;
 import net.minestom.server.instance.InstanceContainer;
 
-public class App {
+public class Main {
     public static void main(String[] args) {
         MinecraftServer server = MinecraftServer.init(new Auth.Online());
         InstanceContainer instance = MinecraftServer.getInstanceManager().createInstanceContainer();
