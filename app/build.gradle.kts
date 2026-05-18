@@ -11,11 +11,6 @@ plugins {
     application
 }
 
-repositories {
-    // Use Maven Central for resolving dependencies.
-    mavenCentral()
-    maven(url = "https://jitpack.io")
-}
 
 dependencies {
     // Use JUnit Jupiter for testing.
@@ -26,12 +21,13 @@ dependencies {
     // This dependency is used by the application.
     implementation(libs.guava)
     implementation("com.github.MCAlgoVisualizations-Bsc:AlgoCraft:project-split-SNAPSHOT")
+    implementation("net.minestom:minestom:2026.01.08-1.21.11")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(25)
     }
 }
 
