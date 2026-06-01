@@ -1,7 +1,6 @@
 package io.github.mcalgovisualizations.demo.algorithms.GraphSearch;
 
 import io.github.mcalgovisualizations.prefab.events.Compare;
-import io.github.mcalgovisualizations.prefab.events.PathFound; // Changed import
 import io.github.mcalgovisualizations.visualization.algorithm.IPlayerSort;
 
 import java.util.*;

@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static io.github.mcalgovisualizations.prefab.algorithms.GraphSearch.NodeUtils.RandomizeNode;
+import static io.github.mcalgovisualizations.demo.algorithms.GraphSearch.NodeUtils.RandomizeNode;
+
 
 public class NodeContext extends AbstractContext<Node> {
 

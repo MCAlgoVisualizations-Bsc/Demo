@@ -68,18 +68,18 @@ public final class WorldConfig {
             return Path.of(envValue.trim());
         }
         
-        // Check for development world in various locations
-        String[] devPaths = {
-            "demo/src/resources/world",
-            "./demo/src/resources/world",
-            "src/resources/world",
-            "./src/resources/world"
+        // Check for development world in various locations (resolve relative to repo root; only 'world')
+        Path repoRoot = Path.of("").toAbsolutePath();
+        Path[] devPaths = new Path[] {
+            repoRoot.resolve("demo/src/resources/world"),
+            repoRoot.resolve("src/resources/world"),
+            repoRoot.resolve("./demo/src/resources/world"),
+            repoRoot.resolve("./src/resources/world")
         };
         
-        for (String devPath : devPaths) {
-            Path path = Path.of(devPath);
-            if (isValidWorld(path)) {
-                return path;
+        for (Path devPath : devPaths) {
+            if (isValidWorld(devPath)) {
+                return devPath;
             }
         }
         

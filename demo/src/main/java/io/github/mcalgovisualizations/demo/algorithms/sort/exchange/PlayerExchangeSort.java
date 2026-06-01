@@ -1,6 +1,6 @@
 package io.github.mcalgovisualizations.demo.algorithms.sort.exchange;
 
-import io.github.mcalgovisualizations.prefab.algorithms.context.SortingContext;
+import io.github.mcalgovisualizations.demo.algorithms.context.SortingContext;
 import io.github.mcalgovisualizations.prefab.events.Compare;
 import io.github.mcalgovisualizations.prefab.events.Swap;
 import io.github.mcalgovisualizations.visualization.algorithm.IAlgorithmEvent;

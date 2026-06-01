@@ -1,10 +1,21 @@
 package io.github.mcalgovisualizations.demo;
 
 import io.github.mcalgovisualizations.demo.algorithms.GraphSearch.*;
+import io.github.mcalgovisualizations.demo.algorithms.context.GridContext;
+import io.github.mcalgovisualizations.demo.algorithms.context.SortingContext;
+import io.github.mcalgovisualizations.demo.algorithms.mazes.*;
+import io.github.mcalgovisualizations.demo.algorithms.mazes.Scenes.GridScene;
+import io.github.mcalgovisualizations.demo.algorithms.mazes.Scenes.HeuristicGridScene;
 import io.github.mcalgovisualizations.demo.algorithms.sort.ArcLayout;
+import io.github.mcalgovisualizations.demo.algorithms.sort.exchange.ExchangeScene;
+import io.github.mcalgovisualizations.demo.algorithms.sort.exchange.PlayerExchangeSort;
+import io.github.mcalgovisualizations.demo.algorithms.sort.insertion.InsertionScene;
+import io.github.mcalgovisualizations.demo.algorithms.sort.insertion.PlayerInsertion;
+import io.github.mcalgovisualizations.demo.algorithms.sort.selection.PlayerSelectionSort;
 import io.github.mcalgovisualizations.demo.algorithms.sort.selection.SelectionScene;
 import io.github.mcalgovisualizations.prefab.events.*;
 import io.github.mcalgovisualizations.prefab.handlers.*;
+import io.github.mcalgovisualizations.prefab.layouts.FloatingLinearLayout;
 import io.github.mcalgovisualizations.visualization.instance.AlgoCraft;
 import io.github.mcalgovisualizations.visualization.instance.Algorithm;
 import io.github.mcalgovisualizations.visualization.renderer.dispatch.AnimationPlan;
@@ -355,61 +366,6 @@ public class RegisterAlgo {
                         .withScene(DefaultScene::new)
                         .create()
         );
-    }
-
-    private static void registerTreeSearchAlgo(AlgoCraft algo) {
-        var bstCollection = new GridContext<>(Arrays.asList("a", "b", "k", "x", "d", "h", "a", "b", "e", "h", "s", "j", "s", "v", "k"));
-
-        //        algo.registerAlgorithm(
-        //                Algorithm.builder(bstCollection)
-        //                        .withIdentity("bst search", PlayerBSTSearch::new)
-        //                        //.withData(bstCollection)
-        //                        .positioning(new BSTNodeLayout<>())
-        //                        .onEvent(Compare.class, new BstCompareHandler())
-        //                        .withPresentation(new AlgorithmPresentation(
-        //                                "Binary Search Tree (Search)",
-        //                                Material.SPYGLASS,
-        //                                "Tip: use Randomize before Start to explolocare new search paths", "then searches for one value using branch decisions.", "Builds a BST from the current values"
-        //                        ))
-        //                        .withScene(DefaultScene::new)
-        //                        .create()
-        //        );
-
-        algo.registerAlgorithm(
-                Algorithm.builder(bstCollection)
-                        .withIdentity("unordered_tree_search", PlayerUnorderedTree::new)
-                        // Use the new Unordered Layout to ensure Root is at index 0 (the top)
-                        .positioning(new UnorderedTreeLayout<>())
-                        .onEvent(Compare.class, new GraphCompareHandler())
-                        .withPresentation(new AlgorithmPresentation(
-                                "Unordered Binary Tree (Linear Search)",
-                                Material.DARK_OAK_LOG,
-                                "until the target is found.", "Search must visit nodes in order", "A tree filled level-by-level."
-                        ))
-                        .withScene(DefaultScene::new)
-                        .create()
-        );
-
-        algo.registerAlgorithm(
-                Algorithm.builder(bstCollection)
-                        .withIdentity("tst search", PlayerTSTSearch::new)
-                        //.withData(stringCollection1)
-                        .positioning(new TSTNodeLayout<>())
-                        .onEvent(Compare.class, new GraphCompareHandler())
-                        .onEvent(Message.class, new MessageHandler())
-                        .withPresentation(new AlgorithmPresentation(
-                                "Ternary Search Tree (Search)",
-                                Material.SPYGLASS,
-                                "Tip: equal matches follow the middle branch", "then searches for one value using left, middle, and right branches.", "Builds a ternary search tree from the current strings"
-                        ))
-                        .withScene(DefaultScene::new)
-                        .create()
-        );
-    }
-
-
-    private static void registerPathFindingAlgo(AlgoCraft algo) {
-
     }
 
     private static GridContext<Integer> buildCaveGrid(int columns, int layers, int depth) {

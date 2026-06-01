@@ -1,6 +1,6 @@
 package io.github.mcalgovisualizations.demo.algorithms.mazes;
 
-import io.github.mcalgovisualizations.prefab.algorithms.context.GridContext;
+import io.github.mcalgovisualizations.demo.algorithms.context.GridContext;
 import io.github.mcalgovisualizations.visualization.algorithm.IPlayerSort;
 import io.github.mcalgovisualizations.prefab.events.CellState;
 import io.github.mcalgovisualizations.prefab.events.CellStateTransition;
