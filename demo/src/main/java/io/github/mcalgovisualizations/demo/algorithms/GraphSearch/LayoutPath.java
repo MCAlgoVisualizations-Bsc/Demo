@@ -403,11 +403,16 @@ public class LayoutPath implements ILayout<Node> {
         final int size = 2;
         for (int x = -size; x <= size; x++) {
             for (int z = -size; z <= size; z++) {
+                // Floor
                 instance.setBlock(pos.add(x, 0, z), Block.COBBLESTONE);
-                if (x == -size || x == size || z == -size || z == size) for (int y = 1; y <= 3; y++) instance.setBlock(pos.add(x, y, z), Block.OAK_PLANKS);
-                if (x == 0 || z == 0) { instance.setBlock(pos.add(x, 1, z), Block.AIR); instance.setBlock(pos.add(x, 2, z), Block.AIR); }
-                if (Math.abs(x) == size && Math.abs(z) == size) for (int y = 1; y <= 3; y++) instance.setBlock(pos.add(x, y, z), Block.OAK_LOG);
-                instance.setBlock(pos.add(x, 4, z), Block.OAK_LOG);
+                int wallHeight = 4;
+                // Wall
+                if (x == -size || x == size || z == -size || z == size) for (int y = 1; y <= wallHeight; y++) instance.setBlock(pos.add(x, y, z), Block.OAK_PLANKS);
+                // Door holes
+                if (x == 0 || z == 0) for (int y = 1; y <= wallHeight - 1; y++) instance.setBlock(pos.add(x, y, z), Block.AIR);
+                // Roof
+                if (Math.abs(x) == size && Math.abs(z) == size) for (int y = 1; y <= wallHeight; y++) instance.setBlock(pos.add(x, y, z), Block.OAK_LOG);
+                instance.setBlock(pos.add(x, wallHeight + 1, z), Block.OAK_LOG);
             }
         }
     }
