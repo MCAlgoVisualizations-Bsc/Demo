@@ -20,7 +20,7 @@ dependencies {
 
     // This dependency is used by the application.
     implementation(libs.guava)
-    implementation("com.github.MCAlgoVisualizations-Bsc:AlgoCraft:project-split-SNAPSHOT")
+    implementation("com.github.MCAlgoVisualizations-Bsc:AlgoCraft:main-SNAPSHOT")
     implementation("net.minestom:minestom:2026.01.08-1.21.11")
 }
 
