@@ -10,3 +10,5 @@
 # Binary files should be left untouched
 *.jar           binary
 
+# Force Nix files to be excluded from language stats
+*.nix linguist-vendored
