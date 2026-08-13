@@ -239,8 +239,7 @@ public class RegisterAlgo {
                         .withPOVSupport(true)
                         .create());
 
-        // Graph layout templates - a smaller graph and tighter grid keeps the L/T/+
-        // shapes legible
+        // Graph layout templates
         final int templateGridCols = 2;
 
         algo.registerAlgorithm(

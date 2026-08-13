@@ -61,8 +61,8 @@ public class LayoutCross implements ILayout<Node> {
             if (pos == null) continue;
 
             Block block = switch (node.getStatus()) {
-                case Start -> { instance.setBlock(pos.add(0, 10, 0), Block.LIME_WOOL); yield Block.LIME_WOOL; }
-                case End -> { instance.setBlock(pos.add(0, 10, 0), Block.RED_WOOL); yield Block.RED_WOOL; }
+                case Start -> { instance.setBlock(pos, Block.LIME_WOOL); yield Block.LIME_WOOL; }
+                case End -> { instance.setBlock(pos, Block.RED_WOOL); yield Block.RED_WOOL; }
                 default -> Block.WHITE_WOOL;
             };
 

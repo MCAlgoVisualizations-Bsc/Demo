@@ -41,8 +41,9 @@ public class LayoutElbow implements ILayout<Node> {
         Map<Integer, Pos> positions = grid.positions();
 
         clearArea(floorOrigin, instance, grid.width(), grid.height());
-        placeNodes(nodes, instance, positions, results);
         drawEdges(nodes, instance, positions);
+        // Node blocks are placed last so they always sit on top of any path block underneath them.
+        placeNodes(nodes, instance, positions, results);
 
         return results;
     }
@@ -53,8 +54,8 @@ public class LayoutElbow implements ILayout<Node> {
             if (pos == null) continue;
 
             Block block = switch (node.getStatus()) {
-                case Start -> { instance.setBlock(pos.add(0, 10, 0), Block.LIME_WOOL); yield Block.LIME_WOOL; }
-                case End -> { instance.setBlock(pos.add(0, 10, 0), Block.RED_WOOL); yield Block.RED_WOOL; }
+                case Start -> { instance.setBlock(pos, Block.LIME_WOOL); yield Block.LIME_WOOL; }
+                case End -> { instance.setBlock(pos, Block.RED_WOOL); yield Block.RED_WOOL; }
                 default -> Block.WHITE_WOOL;
             };
 

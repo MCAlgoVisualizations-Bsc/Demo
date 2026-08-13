@@ -258,7 +258,7 @@ public class LayoutPath implements ILayout<Node> {
         }
 
         Block nodeBlock = switch (node.getStatus()) {
-            case Start -> { instance.setBlock(currentPos.add(0, 10, 0), Block.LIME_WOOL); yield Block.LIME_WOOL; }
+            case Start -> { instance.setBlock(currentPos, Block.LIME_WOOL); yield Block.LIME_WOOL; }
             case End -> { buildSmallHouse(currentPos, instance); yield Block.RED_WOOL; }
             default -> Block.WHITE_WOOL;
         };
