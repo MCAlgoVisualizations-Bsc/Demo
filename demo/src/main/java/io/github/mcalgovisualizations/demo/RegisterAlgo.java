@@ -252,12 +252,17 @@ public class RegisterAlgo {
 
         // Graph layout templates - a smaller graph and tighter grid keeps the L/T/+ shapes legible
         final int templateGridCols = 2;
-        var templateCollection = new NodeContext(NodeUtils.RandomizeNode(3));
+        NodeContext templateCollection = new NodeContext(NodeUtils.RandomizeNode(3)) {
+                @Override
+                public Node randomizeData() {
+                    return copyData();
+                }
+        };
 
         algo.registerAlgorithm(
                 Algorithm.builder(templateCollection)
                         .withIdentity("Elbow layout", VillagerBFS::new)
-                        .positioning(new LayoutElbow(templateGridCols))
+                        .positioning(new LayoutCross(templateGridCols))
                         .onEvent(Compare.class, new GraphCompareHandler())
                         .onEvent(PathFound.class, new PathFoundHandler())
                         .onEvent(Message.class, new MessageHandler())
