@@ -32,10 +32,10 @@ import java.util.List;
 public class RegisterAlgo {
     public static void registerAlgo(AlgoCraft algo) {
         showcaseAlgo(algo);
-        //registerTreeSearchAlgo(algo);
-        //registerPathFindingAlgo(algo);
-        //registerPathFindingAlgo(algo);
-        //registerFlowAlgo(algo);
+        // registerTreeSearchAlgo(algo);
+        // registerPathFindingAlgo(algo);
+        // registerPathFindingAlgo(algo);
+        // registerFlowAlgo(algo);
     }
 
     private static void showcaseAlgo(AlgoCraft algo) {
@@ -53,12 +53,11 @@ public class RegisterAlgo {
                         .withPresentation(new AlgorithmPresentation(
                                 "Graph Search (BFS)",
                                 Material.SPYGLASS,
-                                "Searches a graph using Breadth-First Search.", "Visit nodes level by level.", "Demonstrates pathfinding on a dynamic graph."
-                        ))
+                                "Searches a graph using Breadth-First Search.", "Visit nodes level by level.",
+                                "Demonstrates pathfinding on a dynamic graph."))
                         .withScene(GraphScene::new)
                         .withPOVSupport(true)
-                        .create()
-        );
+                        .create());
 
         algo.registerAlgorithm(
                 Algorithm.builder(graphCollection)
@@ -69,15 +68,15 @@ public class RegisterAlgo {
                         .withPresentation(new AlgorithmPresentation(
                                 "Graph Search (DFS)",
                                 Material.SPYGLASS,
-                                "Searches a graph using Depth-First Search.", "Explores as far as possible along each branch.", "Demonstrates pathfinding on a dynamic graph."
-                        ))
+                                "Searches a graph using Depth-First Search.",
+                                "Explores as far as possible along each branch.",
+                                "Demonstrates pathfinding on a dynamic graph."))
                         .withScene(GraphScene::new)
                         .withPOVSupport(true)
-                        .create()
-        );
+                        .create());
 
         // Sorting
-        var circleCollection1 = new SortingContext<>(new ArrayList<>(List.of(6,5,4,8,10,9,19,20,2)));
+        var circleCollection1 = new SortingContext<>(new ArrayList<>(List.of(6, 5, 4, 8, 10, 9, 19, 20, 2)));
 
         algo.registerAlgorithm(
                 Algorithm.builder(circleCollection1)
@@ -87,29 +86,30 @@ public class RegisterAlgo {
                         .onEvent(Compare.class, new PlayerSelectionSort.CompareHandler())
                         .onEvent(Swap.class, new PlayerSelectionSort.SwapHandler())
                         .onEvent(PlayerSelectionSort.TrackI.class, new PlayerSelectionSort.TrackIHandler())
-                        .onEvent(PlayerSelectionSort.TrackMinIndex.class, new PlayerSelectionSort.TrackMinIndexHandler())
+                        .onEvent(PlayerSelectionSort.TrackMinIndex.class,
+                                new PlayerSelectionSort.TrackMinIndexHandler())
                         .withPresentation(new AlgorithmPresentation(
                                 "Selection Sort",
                                 Material.DIAMOND_SWORD, // Different sword so it stands out
                                 "Time: O(n^2) | Space: O(1)",
                                 "Scans the unsorted region to find the",
                                 "smallest value, then swaps it into place.",
-                                "Visualized on a 360-degree arc."
-                        ))
+                                "Visualized on a 360-degree arc."))
                         .onCompletion(ctx -> {
                             final var size = ctx.getData().size();
                             final var plan = AnimationPlan.<SelectionScene>builder();
-                            final var message = Component.text("Algorithm is complete! Final sorted array: " + ctx.getData(), NamedTextColor.YELLOW);
+                            final var message = Component.text(
+                                    "Algorithm is complete! Final sorted array: " + ctx.getData(),
+                                    NamedTextColor.YELLOW);
                             plan.step(scene -> scene.sendMessage(message));
-                            for(int i = 0; i < size; i++) {
+                            for (int i = 0; i < size; i++) {
                                 final var finalI = i;
                                 plan.step(scene -> scene.hoverDisplay(finalI, true));
                             }
 
                             return plan.build();
                         })
-                        .create()
-        );
+                        .create());
 
         algo.registerAlgorithm(
                 Algorithm.builder(circleCollection1)
@@ -127,8 +127,7 @@ public class RegisterAlgo {
                                 "Time: O(n^2) | Space: O(1)",
                                 "Builds the final sorted array one",
                                 "item at a time by shifting elements.",
-                                "Visualized on a 360-degree arc."
-                        ))
+                                "Visualized on a 360-degree arc."))
                         .onCompletion(ctx -> {
                             final int size = ctx.values.size();
                             var plan = AnimationPlan.<InsertionScene>builder()
@@ -136,19 +135,18 @@ public class RegisterAlgo {
                                     .step(circleScene -> circleScene.sendMessage(Component.text(
                                             "Final sorted array: " + ctx.values.toString(), NamedTextColor.GREEN)));
 
-                            for(int i = 0; i<size; i++) {
+                            for (int i = 0; i < size; i++) {
                                 int finalI = i;
                                 plan.step(0, circleScene -> circleScene.hoverDisplay(finalI, true));
                             }
-                            for(int i = 0; i<size; i++) {
+                            for (int i = 0; i < size; i++) {
                                 int finalI = i;
                                 plan.step(0, circleScene -> circleScene.hoverDisplay(finalI, false));
                             }
 
                             return plan.build();
                         })
-                        .create()
-        );
+                        .create());
 
         algo.registerAlgorithm(
                 Algorithm.builder(circleCollection1)
@@ -166,12 +164,10 @@ public class RegisterAlgo {
                                 "Moves the current minimum to the center stage.",
                                 "Each next value is compared against the staged minimum.",
                                 "If a smaller value is found, it swaps into the stage immediately.",
-                                "Unlike selection sort, it does not wait until the end to swap."
-                        ))
-                        .create()
-        );
+                                "Unlike selection sort, it does not wait until the end to swap."))
+                        .create());
 
-        //Mazes
+        // Mazes
         final int gridX = 20;
         final int gridY = 20;
         var finalgrid = buildPathGrid(gridX, gridY);
@@ -187,12 +183,10 @@ public class RegisterAlgo {
                                 Material.COMPASS,
                                 "Time: O(E log V) | Space: O(V)",
                                 "Colors show open, closed, and final path.",
-                                "4-way A* on a fixed 2D obstacle map"
-                        ))
+                                "4-way A* on a fixed 2D obstacle map"))
                         .withScene(HeuristicGridScene::new)
                         .withPOVSupport(true)
-                        .create()
-        );
+                        .create());
 
         algo.registerAlgorithm(
                 Algorithm.builder(finalgrid)
@@ -206,13 +200,10 @@ public class RegisterAlgo {
                                 Material.COMPASS,
                                 "Time: O(V + E) | Space: O(V)",
                                 "Queue-based level-by-level expansion.",
-                                "4-way BFS explores breadth-first"
-                        ))
+                                "4-way BFS explores breadth-first"))
                         .withScene(GridScene::new)
                         .withPOVSupport(true)
-                        .create()
-        );
-
+                        .create());
 
         algo.registerAlgorithm(
                 Algorithm.builder(finalgrid)
@@ -226,12 +217,10 @@ public class RegisterAlgo {
                                 Material.COMPASS,
                                 "Time: O(V + E) | Space: O(V)",
                                 "Stack-based backtracking expansion.",
-                                "4-way DFS explores depth-first"
-                        ))
+                                "4-way DFS explores depth-first"))
                         .withScene(GridScene::new)
                         .withPOVSupport(true)
-                        .create()
-        );
+                        .create());
 
         algo.registerAlgorithm(
                 Algorithm.builder(finalgrid)
@@ -243,42 +232,45 @@ public class RegisterAlgo {
                         .withPresentation(new AlgorithmPresentation(
                                 "Greedy Best-First",
                                 Material.COMPASS,
-                                "Time: O(E log V) | Space: O(V)", "Prioritizes closeness to goal, may miss optimal paths.", "Fast heuristic-only pathfinding"
-                        ))
+                                "Time: O(E log V) | Space: O(V)",
+                                "Prioritizes closeness to goal, may miss optimal paths.",
+                                "Fast heuristic-only pathfinding"))
                         .withScene(HeuristicGridScene::new)
                         .withPOVSupport(true)
-                        .create()
-        );
+                        .create());
 
-        // Graph layout templates - a smaller graph and tighter grid keeps the L/T/+ shapes legible
+        // Graph layout templates - a smaller graph and tighter grid keeps the L/T/+
+        // shapes legible
         final int templateGridCols = 2;
-        NodeContext templateCollection = new NodeContext(NodeUtils.RandomizeNode(3)) {
-                @Override
-                public Node randomizeData() {
-                    return copyData();
-                }
-        };
 
         algo.registerAlgorithm(
-                Algorithm.builder(templateCollection)
-                        .withIdentity("Elbow layout", VillagerBFS::new)
-                        .positioning(new LayoutCross(templateGridCols))
+                Algorithm.builder((NodeContext) new NodeContext(NodeUtils.ElbowDemo()) {
+                    @Override
+                    public Node randomizeData() {
+                        return copyData();
+                    }
+                }).withIdentity("Elbow layout", VillagerBFS::new)
+                        .positioning(new LayoutElbow(templateGridCols))
                         .onEvent(Compare.class, new GraphCompareHandler())
                         .onEvent(PathFound.class, new PathFoundHandler())
                         .onEvent(Message.class, new MessageHandler())
                         .withPresentation(new AlgorithmPresentation(
                                 "Graph Search (Elbow Layout)",
                                 Material.WOODEN_HOE,
-                                "Searches a graph using Breadth-First Search.", "Every edge is routed as a single right-angle bend.", "Demonstrates an L-shaped orthogonal graph layout."
-                        ))
+                                "Searches a graph using Breadth-First Search.",
+                                "Every edge is routed as a single right-angle bend.",
+                                "Demonstrates an L-shaped orthogonal graph layout."))
                         .withScene(GraphScene::new)
                         .withPOVSupport(true)
-                        .create()
-        );
+                        .create());
 
         algo.registerAlgorithm(
-                Algorithm.builder(new NodeContext(NodeUtils.CrossDemo()))
-                        .withIdentity("Cross layout", VillagerBFS::new)
+                Algorithm.builder((NodeContext) new NodeContext(NodeUtils.CrossDemo()) {
+                    @Override
+                    public Node randomizeData() {
+                        return copyData();
+                    }
+                }).withIdentity("Cross layout", VillagerBFS::new)
                         .positioning(new LayoutCross(templateGridCols))
                         .onEvent(Compare.class, new GraphCompareHandler())
                         .onEvent(PathFound.class, new PathFoundHandler())
@@ -286,48 +278,53 @@ public class RegisterAlgo {
                         .withPresentation(new AlgorithmPresentation(
                                 "Graph Search (Cross Layout)",
                                 Material.WOODEN_PICKAXE,
-                                "Searches a graph using Breadth-First Search.", "Every edge is routed as a right-angle bend.", "Independent edges that cross are marked with a + junction."
-                        ))
+                                "Searches a graph using Breadth-First Search.",
+                                "Every edge is routed as a right-angle bend.",
+                                "Independent edges that cross are marked with a + junction."))
                         .withScene(GraphScene::new)
                         .withPOVSupport(true)
-                        .create()
-        );
+                        .create());
     }
 
     /*--------------------------------------------------------------------------------------------------------------------------------------*/
-    /* Deprecated algorithms below - kept for reference but not currently registered in the UI. Can be re-enabled by uncommenting the calls in registerAlgo() and the method itself. */
+    /*
+     * Deprecated algorithms below - kept for reference but not currently registered
+     * in the UI. Can be re-enabled by uncommenting the calls in registerAlgo() and
+     * the method itself.
+     */
 
-    //    private static void registerFlowAlgo(AlgoCraft algo) {
-    //        var flowMatrix = new GridContext<Integer>(new ArrayList<>(Arrays.asList(
-    //                0,16, 13, 0,  0,  0,
-    //                0,0,  10, 12, 0,  0,
-    //                0,4,  0,  0,  14, 0,
-    //                0,0,  9,  0,  0,  20,
-    //                0,0,  0,  7,  0,  4,
-    //                0,0,  0,  0,  0,  0
-    //        )));
-    //            var e = Algorithm.builder(flowMatrix)
-    //                .withIdentity("max flow (edmonds-karp)", PlayerMaxFlow::new)
-    //                .positioning(new GraphNetworkLayout<>(8.0, 5.0))
-    //                .withScene(FlowScene::new)
-    //                .onEvent(FlowEdgeVisit.class, new FlowEdgeVisitHandler())
-    //                .onEvent(FlowPathEdge.class, new FlowPathEdgeHandler())
-    //                .onEvent(FlowEdgeFlowUpdate.class, new FlowEdgeFlowUpdateHandler())
-    //                .onEvent(FlowStatus.class, new FlowStatusHandler())
-    //                .withPresentation(new AlgorithmPresentation(
-    //                        "Max Flow (Edmonds-Karp)",
-    //                        Material.WATER_BUCKET,
-    //                        "Graph max-flow from source (0) to sink (n-1)",
-    //                        "Fixed 6-node flow graph with edge current/max labels",
-    //                        "Selected augmenting path edges turn particle color"
-    //                ))
-    //                .create();
-    //        algo.registerAlgorithm(e);
-    //    }
+    // private static void registerFlowAlgo(AlgoCraft algo) {
+    // var flowMatrix = new GridContext<Integer>(new ArrayList<>(Arrays.asList(
+    // 0,16, 13, 0, 0, 0,
+    // 0,0, 10, 12, 0, 0,
+    // 0,4, 0, 0, 14, 0,
+    // 0,0, 9, 0, 0, 20,
+    // 0,0, 0, 7, 0, 4,
+    // 0,0, 0, 0, 0, 0
+    // )));
+    // var e = Algorithm.builder(flowMatrix)
+    // .withIdentity("max flow (edmonds-karp)", PlayerMaxFlow::new)
+    // .positioning(new GraphNetworkLayout<>(8.0, 5.0))
+    // .withScene(FlowScene::new)
+    // .onEvent(FlowEdgeVisit.class, new FlowEdgeVisitHandler())
+    // .onEvent(FlowPathEdge.class, new FlowPathEdgeHandler())
+    // .onEvent(FlowEdgeFlowUpdate.class, new FlowEdgeFlowUpdateHandler())
+    // .onEvent(FlowStatus.class, new FlowStatusHandler())
+    // .withPresentation(new AlgorithmPresentation(
+    // "Max Flow (Edmonds-Karp)",
+    // Material.WATER_BUCKET,
+    // "Graph max-flow from source (0) to sink (n-1)",
+    // "Fixed 6-node flow graph with edge current/max labels",
+    // "Selected augmenting path edges turn particle color"
+    // ))
+    // .create();
+    // algo.registerAlgorithm(e);
+    // }
 
     private static void registerSortingAlgo(AlgoCraft algo) {
         var integerCollection1 = new SortingContext<>(new ArrayList<>(List.of(3, 7, 8, 1, 6, 4, 9, 5, 2)));
-        var stringCollection1 = new SortingContext<>(new ArrayList<>(List.of("a", "b", "k", "x", "d", "h", "a", "b", "e")));
+        var stringCollection1 = new SortingContext<>(
+                new ArrayList<>(List.of("a", "b", "k", "x", "d", "h", "a", "b", "e")));
 
         algo.registerAlgorithm(
                 Algorithm.builder(integerCollection1)
@@ -339,10 +336,9 @@ public class RegisterAlgo {
                         .withPresentation(new AlgorithmPresentation(
                                 "Insertion Sort",
                                 Material.IRON_SWORD,
-                                "Time: O(n^2) | Space: O(1)", "the final sorted array one item at a time.", "A simple sorting algorithm that builds"
-                        ))
-                        .create()
-        );
+                                "Time: O(n^2) | Space: O(1)", "the final sorted array one item at a time.",
+                                "A simple sorting algorithm that builds"))
+                        .create());
 
         algo.registerAlgorithm(
                 Algorithm.builder(integerCollection1)
@@ -352,12 +348,11 @@ public class RegisterAlgo {
                         .withPresentation(new AlgorithmPresentation(
                                 "Insertion Sort",
                                 Material.IRON_SWORD,
-                                "Time: O(n^2) | Space: O(1)", "the final sorted array one item at a time.", "A simple sorting algorithm that builds"
-                        ))
+                                "Time: O(n^2) | Space: O(1)", "the final sorted array one item at a time.",
+                                "A simple sorting algorithm that builds"))
                         .onEvent(Compare.class, new CompareHandler())
                         .onEvent(Swap.class, new SwapHandler())
-                        .create()
-        );
+                        .create());
 
         algo.registerAlgorithm(
                 Algorithm.builder(integerCollection1)
@@ -369,14 +364,12 @@ public class RegisterAlgo {
                                 Material.GOLDEN_SWORD,
                                 "Time: O(n^2) | Space: O(1)",
                                 "with fewer values for quick runs.",
-                                "A compact insertion-sort demo"
-                        ))
+                                "A compact insertion-sort demo"))
                         .onEvent(Compare.class, new CompareHandler())
                         .onEvent(Swap.class, new SwapHandler())
                         .create()
 
         );
-
 
         algo.registerAlgorithm(
                 Algorithm.builder(new SortingContext<>(Arrays.asList(8, 3, 1)))
@@ -385,14 +378,12 @@ public class RegisterAlgo {
                         .withPresentation(new AlgorithmPresentation(
                                 "Small Insertion Sort",
                                 Material.GOLDEN_SWORD,
-                                "Time: O(n^2) | Space: O(1)", "with fewer values for quick runs.", "A compact insertion-sort demo"
-                        ))
+                                "Time: O(n^2) | Space: O(1)", "with fewer values for quick runs.",
+                                "A compact insertion-sort demo"))
                         .onEvent(Compare.class, new CompareHandler())
                         .onEvent(Swap.class, new SwapHandler())
                         .withScene(DefaultScene::new)
-                        .create()
-        );
-
+                        .create());
 
         algo.registerAlgorithm(
                 Algorithm.builder(stringCollection1)
@@ -404,11 +395,10 @@ public class RegisterAlgo {
                         .withPresentation(new AlgorithmPresentation(
                                 "Insertion Sort (Strings)",
                                 Material.BOOK,
-                                "Time: O(n^2) | Space: O(1)", "to demonstrate generic ordering.", "Insertion-sort using string values"
-                        ))
+                                "Time: O(n^2) | Space: O(1)", "to demonstrate generic ordering.",
+                                "Insertion-sort using string values"))
                         .withScene(DefaultScene::new)
-                        .create()
-        );
+                        .create());
     }
 
     private static GridContext<Integer> buildCaveGrid(int columns, int layers, int depth) {
