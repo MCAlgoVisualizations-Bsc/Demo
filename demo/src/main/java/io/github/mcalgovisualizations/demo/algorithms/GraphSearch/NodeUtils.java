@@ -32,6 +32,10 @@ public class NodeUtils {
     }
 
     public static Node RandomizeNode() {
+        return RandomizeNode(8);
+    }
+
+    public static Node RandomizeNode(int nodeCount) {
         Random random = new Random();
         Map<String, Node> grid = new HashMap<>();
         List<Node> existingNodes = new ArrayList<>();
@@ -43,7 +47,7 @@ public class NodeUtils {
 
         int[][] directions = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 
-        for (int i = 1; i < 8; i++) {
+        for (int i = 1; i < nodeCount; i++) {
             boolean placed = false;
             while (!placed) {
                 // Pick a random node we've already placed to branch off from
@@ -81,6 +85,48 @@ public class NodeUtils {
         existingNodes.getLast().setStatus(Node.NodeTarget.End);
 
         return startNode;
+    }
+
+    /** Fixed hub-and-branch graph for showcasing {@link LayoutJunction}: a root with three direct children, one of which extends one more hop. */
+    public static Node JunctionDemo() {
+        Node root = new Node(0, 0, Node.NodeTarget.Start);
+        Node a = new Node(1, 1, Node.NodeTarget.None);
+        Node b = new Node(2, 2, Node.NodeTarget.None);
+        Node c = new Node(3, 3, Node.NodeTarget.None);
+        Node d = new Node(4, 4, Node.NodeTarget.End);
+
+        connectUndirected(root, a);
+        connectUndirected(root, b);
+        connectUndirected(root, c);
+        connectUndirected(c, d);
+
+        return root;
+    }
+
+    /** Fixed diamond graph for showcasing {@link LayoutCross}: two independent branches from the root reconverge, so their routed paths actually cross. */
+    public static Node CrossDemo() {
+        Node root = new Node(0, 0, Node.NodeTarget.Start);
+        Node a = new Node(1, 1, Node.NodeTarget.None);
+        Node b = new Node(2, 2, Node.NodeTarget.None);
+        Node c = new Node(3, 3, Node.NodeTarget.None);
+        Node d = new Node(4, 4, Node.NodeTarget.End);
+        // d
+        // c
+        // a - b
+        // Root
+
+        root.withGridPosition(0, 0);
+        a.withGridPosition(0, 1);
+        b.withGridPosition(1, 1);
+        c.withGridPosition(0, 2);
+        d.withGridPosition(0, 3);
+
+        connectUndirected(root, a);
+        connectUndirected(a, b);
+        connectUndirected(a, c);
+        connectUndirected(c, d);
+
+        return root;
     }
 
     private static void connectUndirected(Node a, Node b) {

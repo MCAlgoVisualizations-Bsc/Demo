@@ -11,6 +11,8 @@ public class Node {
     private final int value;
     private List<Node> neighbors = new ArrayList<>();
     private @NonNull NodeTarget status = NodeTarget.None;
+    private Integer gridX;
+    private Integer gridZ;
 
     public Node(int id, int value, @NonNull NodeTarget status) {
         this.id = id;
@@ -51,6 +53,25 @@ public class Node {
 
     public void addNeighbor(Node neighbor) {
         neighbors.add(neighbor);
+    }
+
+    /** Pins this node to an explicit (column, row) grid cell, overriding any layout's automatic placement for it. */
+    public Node withGridPosition(int x, int z) {
+        this.gridX = x;
+        this.gridZ = z;
+        return this;
+    }
+
+    public boolean hasGridPosition() {
+        return gridX != null && gridZ != null;
+    }
+
+    public int getGridX() {
+        return gridX;
+    }
+
+    public int getGridZ() {
+        return gridZ;
     }
 
     @Override

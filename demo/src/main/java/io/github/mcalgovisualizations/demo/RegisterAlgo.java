@@ -249,6 +249,44 @@ public class RegisterAlgo {
                         .withPOVSupport(true)
                         .create()
         );
+
+        // Graph layout templates - a smaller graph and tighter grid keeps the L/T/+ shapes legible
+        final int templateGridCols = 2;
+        var templateCollection = new NodeContext(NodeUtils.RandomizeNode(3));
+
+        algo.registerAlgorithm(
+                Algorithm.builder(templateCollection)
+                        .withIdentity("Elbow layout", VillagerBFS::new)
+                        .positioning(new LayoutElbow(templateGridCols))
+                        .onEvent(Compare.class, new GraphCompareHandler())
+                        .onEvent(PathFound.class, new PathFoundHandler())
+                        .onEvent(Message.class, new MessageHandler())
+                        .withPresentation(new AlgorithmPresentation(
+                                "Graph Search (Elbow Layout)",
+                                Material.WOODEN_HOE,
+                                "Searches a graph using Breadth-First Search.", "Every edge is routed as a single right-angle bend.", "Demonstrates an L-shaped orthogonal graph layout."
+                        ))
+                        .withScene(GraphScene::new)
+                        .withPOVSupport(true)
+                        .create()
+        );
+
+        algo.registerAlgorithm(
+                Algorithm.builder(new NodeContext(NodeUtils.CrossDemo()))
+                        .withIdentity("Cross layout", VillagerBFS::new)
+                        .positioning(new LayoutCross(templateGridCols))
+                        .onEvent(Compare.class, new GraphCompareHandler())
+                        .onEvent(PathFound.class, new PathFoundHandler())
+                        .onEvent(Message.class, new MessageHandler())
+                        .withPresentation(new AlgorithmPresentation(
+                                "Graph Search (Cross Layout)",
+                                Material.WOODEN_PICKAXE,
+                                "Searches a graph using Breadth-First Search.", "Every edge is routed as a right-angle bend.", "Independent edges that cross are marked with a + junction."
+                        ))
+                        .withScene(GraphScene::new)
+                        .withPOVSupport(true)
+                        .create()
+        );
     }
 
     /*--------------------------------------------------------------------------------------------------------------------------------------*/

@@ -29,7 +29,12 @@ public class NodeContext extends AbstractContext<Node> {
         if (values == null) return null;
         // Basic copy of the root. Note: In a graph, true deep copying
         // usually requires a Map to handle cycles.
-        return new Node(values.getID(), values.getValue(), new ArrayList<>(values.getNeighbors()));
+        Node copy = new Node(values.getID(), values.getValue(), new ArrayList<>(values.getNeighbors()));
+        copy.setStatus(values.getStatus());
+        if (values.hasGridPosition()) {
+            copy.withGridPosition(values.getGridX(), values.getGridZ());
+        }
+        return copy;
     }
 
     @Override
