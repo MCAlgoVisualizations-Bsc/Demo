@@ -1,4 +1,4 @@
-package io.github.mcalgovisualizations.demo.commnds;
+package io.github.mcalgovisualizations.demo.commands;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;

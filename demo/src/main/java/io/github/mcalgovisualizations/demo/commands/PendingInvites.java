@@ -1,4 +1,4 @@
-package io.github.mcalgovisualizations.demo.commnds;
+package io.github.mcalgovisualizations.demo.commands;
 
 import io.github.mcalgovisualizations.visualization.instance.AlgoCraft;
 import net.kyori.adventure.text.Component;

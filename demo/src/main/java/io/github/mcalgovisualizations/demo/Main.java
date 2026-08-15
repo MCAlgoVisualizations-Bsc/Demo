@@ -1,6 +1,6 @@
 package io.github.mcalgovisualizations.demo;
 
-import io.github.mcalgovisualizations.demo.commnds.*;
+import io.github.mcalgovisualizations.demo.commands.*;
 import io.github.mcalgovisualizations.demo.config.WorldConfig;
 import io.github.mcalgovisualizations.visualization.instance.AlgoCraft;
 import net.kyori.adventure.text.Component;

@@ -1,4 +1,4 @@
-package io.github.mcalgovisualizations.demo.commnds;
+package io.github.mcalgovisualizations.demo.commands;
 
 
 import net.minestom.server.command.builder.Command;
