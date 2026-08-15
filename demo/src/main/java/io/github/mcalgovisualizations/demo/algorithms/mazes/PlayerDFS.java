@@ -52,13 +52,11 @@ public class PlayerDFS implements IPlayerSort<GridContext<Integer>> {
         }
 
         boolean[] visited = new boolean[size];
-        boolean[] inStack = new boolean[size]; // THE FIX: Track what is already in the frontier
         int[] parent = new int[size];
         Arrays.fill(parent, -1);
 
         Stack<Integer> frontier = new Stack<>();
         frontier.push(start);
-        inStack[start] = true; // Mark start as in stack
 
         boolean found = false;
         while (!frontier.isEmpty()) {
@@ -89,10 +87,8 @@ public class PlayerDFS implements IPlayerSort<GridContext<Integer>> {
 
             for (int neighbor : neighbors) {
                 // THE FIX: Check inStack[neighbor] to prevent duplicate pushes and parent overwriting
-                if (neighbor < 0 || cells[neighbor] == WALL || visited[neighbor] || inStack[neighbor]) continue;
-
+                if (neighbor < 0 || cells[neighbor] == WALL || visited[neighbor]) continue;
                 parent[neighbor] = current;
-                inStack[neighbor] = true; // Lock it in so its parent is permanent
                 frontier.push(neighbor);
 
                 if (neighbor != start && neighbor != goal) {
