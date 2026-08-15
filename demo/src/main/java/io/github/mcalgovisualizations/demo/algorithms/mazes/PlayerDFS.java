@@ -25,7 +25,7 @@ public class PlayerDFS implements IPlayerSort<GridContext<Integer>> {
 
     @Override
     public void run(GridContext<Integer> ctx) {
-        var values = ctx.getData(); // Using getData() to match your standard context
+        var values = ctx.getData();
         int size = values.size();
         if (size == 0) {
             ctx.emit(new Message("DFS: empty grid", Message.MessageType.ERROR));
@@ -52,11 +52,13 @@ public class PlayerDFS implements IPlayerSort<GridContext<Integer>> {
         }
 
         boolean[] visited = new boolean[size];
+        boolean[] seenOpen = new boolean[size]; //Tracks visual state
         int[] parent = new int[size];
         Arrays.fill(parent, -1);
 
         Stack<Integer> frontier = new Stack<>();
         frontier.push(start);
+        seenOpen[start] = true; // Mark start so we don't animate it
 
         boolean found = false;
         while (!frontier.isEmpty()) {
@@ -86,14 +88,15 @@ public class PlayerDFS implements IPlayerSort<GridContext<Integer>> {
             };
 
             for (int neighbor : neighbors) {
-                // THE FIX: Check inStack[neighbor] to prevent duplicate pushes and parent overwriting
                 if (neighbor < 0 || cells[neighbor] == WALL || visited[neighbor]) continue;
                 parent[neighbor] = current;
                 frontier.push(neighbor);
 
-                if (neighbor != start && neighbor != goal) {
+                // Only emit visual change if it hasn't been emitted yet
+                if (!seenOpen[neighbor] && neighbor != start && neighbor != goal) {
                     ctx.emit(new CellStateTransition(neighbor, CellState.DEFAULT, CellState.OPEN));
                 }
+                seenOpen[neighbor] = true; // Lock the visual state
             }
         }
 
