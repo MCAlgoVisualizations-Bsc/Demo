@@ -139,10 +139,7 @@ public class RegisterAlgo {
                                 int finalI = i;
                                 plan.step(0, circleScene -> circleScene.hoverDisplay(finalI, true));
                             }
-                            for (int i = 0; i < size; i++) {
-                                int finalI = i;
-                                plan.step(0, circleScene -> circleScene.hoverDisplay(finalI, false));
-                            }
+
 
                             return plan.build();
                         })
