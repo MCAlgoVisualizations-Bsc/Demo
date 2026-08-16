@@ -66,3 +66,8 @@ Then connect to the local server with your Minecraft client.
 ## Notes
 
 The main entry point is [demo/src/main/java/io/github/mcalgovisualizations/demo/Main.java](demo/src/main/java/io/github/mcalgovisualizations/demo/Main.java), and the algorithm registrations live in [demo/src/main/java/io/github/mcalgovisualizations/demo/RegisterAlgo.java](demo/src/main/java/io/github/mcalgovisualizations/demo/RegisterAlgo.java).
+
+## Credits
+The demo world is adapted from ["BedWar Map"](https://www.planetminecraft.com/project/bedwar-map/) 
+by [SamosTheSage](https://www.planetminecraft.com/member/samosthesage/) on Planet Minecraft. 
+All rights to the original build remain with the author.
